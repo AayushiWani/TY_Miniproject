@@ -16,20 +16,15 @@
 <h3>Frontend:</h3>
 <ul>
     <li>React Native (Expo)</li>
-    <li>Redux (State Management)</li>
-    <li>React Navigation</li>
 </ul>
 
 <h3>Backend:</h3>
 <ul>
     <li>Node.js (Express.js)</li>
-    <li>MongoDB (Mongoose ORM)</li>
-    <li>JWT (Authentication)</li>
 </ul>
 
 <h3>AI/ML Integrations:</h3>
 <ul>
     <li>Recommendation System (Job Matching)</li>
-    <li>Speech-to-Text API</li>
     <li>Language Translation API</li>
 </ul>
