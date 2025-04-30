@@ -59,7 +59,7 @@ const GroupCard = ({ group }) => {
       <CardFooter className="p-4 pt-0">
         <Button 
           onClick={() => navigate(`/groups/${group._id}`)} 
-          className="w-full bg-purple-600 hover:bg-purple-700"
+          className="w-full bg-orange-500 hover:bg-purple-700"
         >
           View Group
         </Button>

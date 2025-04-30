@@ -6,14 +6,31 @@ import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
     try {
-        const { fullname, email, phoneNumber, password, role } = req.body;
-         
+        const { fullname, email, phoneNumber, password, role, aadhaar, gstin } = req.body;
+
         if (!fullname || !email || !phoneNumber || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
                 success: false
             });
         };
+
+        // Validate Aadhaar for workers (students)
+        if (role === 'student' && (!aadhaar || !/^\d{12}$/.test(aadhaar))) {
+            return res.status(400).json({
+                message: "Aadhaar number must be exactly 12 digits",
+                success: false
+            });
+        }
+
+        // Validate GSTIN for contractors (recruiters)
+        if (role === 'recruiter' && !gstin) {
+            return res.status(400).json({
+                message: "GSTIN is required for contractors",
+                success: false
+            });
+        }
+
         const file = req.file;
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
@@ -34,7 +51,9 @@ export const register = async (req, res) => {
             password: hashedPassword,
             role,
             profile:{
-                profilePhoto:cloudResponse.secure_url,
+                profilePhoto: cloudResponse.secure_url,
+                aadhaar: role === 'student' ? aadhaar : undefined,
+                gstin: role === 'recruiter' ? gstin : undefined
             }
         });
 
@@ -49,7 +68,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
-        
+
         if (!email || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
@@ -114,7 +133,7 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
-        
+
         const file = req.file;
         // cloudinary ayega idhar
         const fileUri = getDataUri(file);
@@ -141,7 +160,7 @@ export const updateProfile = async (req, res) => {
         if(phoneNumber)  user.phoneNumber = phoneNumber
         if(bio) user.profile.bio = bio
         if(skills) user.profile.skills = skillsArray
-      
+
         // resume comes later here...
         if(cloudResponse){
             user.profile.resume = cloudResponse.secure_url // save the cloudinary url

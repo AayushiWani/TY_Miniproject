@@ -20,7 +20,9 @@ const Signup = () => {
         phoneNumber: "",
         password: "",
         role: "",
-        file: ""
+        file: "",
+        aadhaar: "",
+        gstin: ""
     });
     const {loading,user} = useSelector(store=>store.auth);
     const dispatch = useDispatch();
@@ -42,6 +44,14 @@ const Signup = () => {
         formData.append("role", input.role);
         if (input.file) {
             formData.append("file", input.file);
+        }
+        // Add Aadhaar for workers (students)
+        if (input.role === 'student' && input.aadhaar) {
+            formData.append("aadhaar", input.aadhaar);
+        }
+        // Add GSTIN for contractors (recruiters)
+        if (input.role === 'recruiter' && input.gstin) {
+            formData.append("gstin", input.gstin);
         }
 
         try {
@@ -124,7 +134,7 @@ const Signup = () => {
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
                                 />
-                                <Label htmlFor="r1">Student</Label>
+                                <Label htmlFor="r1">Worker</Label>
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Input
@@ -135,7 +145,7 @@ const Signup = () => {
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
                                 />
-                                <Label htmlFor="r2">Recruiter</Label>
+                                <Label htmlFor="r2">Contractor</Label>
                             </div>
                         </RadioGroup>
                         <div className='flex items-center gap-2'>
@@ -148,6 +158,37 @@ const Signup = () => {
                             />
                         </div>
                     </div>
+
+                    {/* Conditional fields based on role */}
+                    {input.role === 'student' && (
+                        <div className='my-2'>
+                            <Label>Aadhaar Number</Label>
+                            <Input
+                                type="text"
+                                value={input.aadhaar}
+                                name="aadhaar"
+                                onChange={changeEventHandler}
+                                placeholder="12-digit Aadhaar number"
+                                maxLength={12}
+                                pattern="\d{12}"
+                                title="Aadhaar number must be exactly 12 digits"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">Aadhaar number must be exactly 12 digits</p>
+                        </div>
+                    )}
+
+                    {input.role === 'recruiter' && (
+                        <div className='my-2'>
+                            <Label>GSTIN</Label>
+                            <Input
+                                type="text"
+                                value={input.gstin}
+                                name="gstin"
+                                onChange={changeEventHandler}
+                                placeholder="Enter your GSTIN"
+                            />
+                        </div>
+                    )}
                     {
                         loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Signup</Button>
                     }

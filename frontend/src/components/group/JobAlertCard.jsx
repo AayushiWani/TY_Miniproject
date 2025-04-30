@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
-import { Briefcase, MapPin, DollarSign } from 'lucide-react';
+import { Briefcase, MapPin, IndianRupee } from 'lucide-react';
 
 const JobAlertCard = ({ job }) => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const JobAlertCard = ({ job }) => {
         <div className="flex flex-col space-y-2">
           <div className="flex justify-between items-start">
             <h3 className="font-bold text-lg">{job.title}</h3>
-            <Badge className="bg-purple-600">{job.jobType}</Badge>
+            <Badge className="bg-orange-500">{job.jobType}</Badge>
           </div>
           
           <p className="text-sm text-gray-600 line-clamp-2">{job.description}</p>
@@ -31,8 +31,8 @@ const JobAlertCard = ({ job }) => {
             </div>
             
             <div className="flex items-center text-gray-600">
-              <DollarSign className="w-4 h-4 mr-1" />
-              {job.salary} LPA
+              <IndianRupee className="w-4 h-4 mr-1" />
+              {job.salary} 
             </div>
           </div>
         </div>

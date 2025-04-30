@@ -79,7 +79,7 @@ const SelectJobDialog = ({ open, setOpen, groupId, onSuccess }) => {
                     <div className="flex gap-2 text-xs text-gray-500 mt-2">
                       <span>{job.location}</span>
                       <span>•</span>
-                      <span>{job.salary} LPA</span>
+                      <span>{job.salary} </span>
                       <span>•</span>
                       <span>{job.jobType}</span>
                     </div>

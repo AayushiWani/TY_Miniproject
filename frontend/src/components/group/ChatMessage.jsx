@@ -58,7 +58,7 @@ const ChatMessage = ({ message }) => {
         </Avatar>
       )}
       
-      <div className={`max-w-md ${isCurrentUser ? 'bg-purple-600 text-white' : 'bg-gray-200 text-gray-800'} rounded-lg px-4 py-2 shadow-sm`}>
+      <div className={`max-w-md ${isCurrentUser ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-800'} rounded-lg px-4 py-2 shadow-sm`}>
         {!isCurrentUser && (
           <div className="font-medium text-sm mb-1">{message.sender.fullname}</div>
         )}

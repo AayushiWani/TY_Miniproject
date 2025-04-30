@@ -231,7 +231,7 @@ const GroupChat = () => {
               {user && (
                 <Button
                   variant={isGroupMember ? "destructive" : "default"}
-                  className={isGroupMember ? "bg-red-500" : "bg-purple-600"}
+                  className={isGroupMember ? "bg-red-500" : "bg-orange-500"}
                   onClick={handleJoinLeaveGroup}
                   disabled={isJoining}
                 >
@@ -294,7 +294,7 @@ const GroupChat = () => {
                     placeholder="Type your message..."
                     className="flex-grow"
                   />
-                  <Button type="submit" className="bg-purple-600">
+                  <Button type="submit" className="bg-orange-500">
                     <Send className="h-4 w-4" />
                   </Button>
                 </form>

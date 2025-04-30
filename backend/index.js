@@ -13,6 +13,7 @@ import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import toolRoute from "./routes/tool.route.js";
 import groupRoute from "./routes/group.route.js"; // Import group routes
+import notificationRoute from "./routes/notification.route.js"; // Import notification routes
 
 dotenv.config();
 connectDB(); // Connect to MongoDB
@@ -47,31 +48,31 @@ io.use(async (socket, next) => {
 // Socket.io connection handler
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.userId}`);
-  
+
   // Join a group chat room
   socket.on("join-group", (groupId) => {
     socket.join(groupId);
     console.log(`User ${socket.userId} joined group ${groupId}`);
   });
-  
+
   // Leave a group chat room
   socket.on("leave-group", (groupId) => {
     socket.leave(groupId);
     console.log(`User ${socket.userId} left group ${groupId}`);
   });
-  
+
   // Handle new messages
   socket.on("new-message", (data) => {
     // Don't emit back to the sender - only to others in the room
     socket.to(data.groupId).emit("receive-message", data.message);
   });
-  
+
   // Handle job alerts
   socket.on("new-job-alert", (data) => {
     // Don't emit back to the sender - only to others in the room
     socket.to(data.groupId).emit("receive-job-alert", data.alert);
   });
-  
+
   // Handle disconnection
   socket.on("disconnect", () => {
     console.log(`User disconnected: ${socket.userId}`);
@@ -99,6 +100,7 @@ app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 app.use("/api/v1/tool", toolRoute);
 app.use("/api/v1/groups", groupRoute); // Add group routes
+app.use("/api/v1/notifications", notificationRoute); // Add notification routes
 
 httpServer.listen(PORT, () => {
     console.log(`Server running at port ${PORT}`);

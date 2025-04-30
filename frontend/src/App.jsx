@@ -14,10 +14,12 @@ import AdminJobs from "./components/admin/AdminJobs";
 import PostJob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
+import ProtectedUserRoute from './components/shared/ProtectedUserRoute'
 import Guidelines from './components/Guidelines'
 import Tools from './components/Tools'
 import GroupDirectory from './components/group/GroupDirectory';
 import GroupChat from './components/group/GroupChat';
+import Notifications from './components/Notifications'
 
 const appRouter = createBrowserRouter([
   {
@@ -30,7 +32,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path: '/tools',
-    element: <Tools />
+    element: <ProtectedUserRoute><Tools /></ProtectedUserRoute>
   },
   {
     path: '/login',
@@ -42,7 +44,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/jobs",
-    element: <Jobs />
+    element: <ProtectedUserRoute><Jobs /></ProtectedUserRoute>
   },
   {
     path: "/description/:id",
@@ -50,7 +52,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/browse",
-    element: <Browse />
+    element: <ProtectedUserRoute><Browse /></ProtectedUserRoute>
   },
   {
     path: "/profile",
@@ -58,11 +60,15 @@ const appRouter = createBrowserRouter([
   },
   {
     path: '/groups',
-    element: <GroupDirectory />
+    element: <ProtectedUserRoute><GroupDirectory /></ProtectedUserRoute>
   },
   {
     path: '/groups/:id',
-    element: <GroupChat />
+    element: <ProtectedUserRoute><GroupChat /></ProtectedUserRoute>
+  },
+  {
+    path: '/notifications',
+    element: <Notifications />
   },
   // admin ke liye yha se start hoga
   {
@@ -71,23 +77,23 @@ const appRouter = createBrowserRouter([
   },
   {
     path:"/admin/companies/create",
-    element: <ProtectedRoute><CompanyCreate/></ProtectedRoute> 
+    element: <ProtectedRoute><CompanyCreate/></ProtectedRoute>
   },
   {
     path:"/admin/companies/:id",
-    element:<ProtectedRoute><CompanySetup/></ProtectedRoute> 
+    element:<ProtectedRoute><CompanySetup/></ProtectedRoute>
   },
   {
     path:"/admin/jobs",
-    element:<ProtectedRoute><AdminJobs/></ProtectedRoute> 
+    element:<ProtectedRoute><AdminJobs/></ProtectedRoute>
   },
   {
     path:"/admin/jobs/create",
-    element:<ProtectedRoute><PostJob/></ProtectedRoute> 
+    element:<ProtectedRoute><PostJob/></ProtectedRoute>
   },
   {
     path:"/admin/jobs/:id/applicants",
-    element:<ProtectedRoute><Applicants/></ProtectedRoute> 
+    element:<ProtectedRoute><Applicants/></ProtectedRoute>
   },
 
 ])
