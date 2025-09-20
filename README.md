@@ -1,6 +1,5 @@
 # 🛠️ ContractorConnect – Job Portal for Skilled Laborers & Contractors
 
-![ContractorConnect Banner](https://via.placeholder.com/1200x400?text=ContractorConnect+Job+Portal)
 
 ## 📌 Project Overview
 
@@ -66,23 +65,7 @@
    - Frontend deployed on Vercel/Netlify
    - Backend and database hosted on Render/MongoDB Atlas
 
-## 📸 Screenshots
 
-### 🔐 Login & Signup
-![Login](https://via.placeholder.com/600x350?text=Login+Page)
-![Signup](https://via.placeholder.com/600x350?text=Signup+Page)
-
-### 👷 Worker Dashboard
-![Worker Dashboard](https://via.placeholder.com/600x350?text=Worker+Dashboard)
-
-### 🏗️ Contractor Job Posting
-![Job Posting](https://via.placeholder.com/600x350?text=Job+Posting)
-
-### 💬 Real-Time Group Chat
-![Chat](https://via.placeholder.com/600x350?text=Chat+Module)
-
-### 🧰 Tool Rental Module
-![Tool Rental](https://via.placeholder.com/600x350?text=Tool+Rental+Page)
 
 ## 📚 Conclusion
 
